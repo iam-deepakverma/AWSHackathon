@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>AWS Innovation Challenge | Presidency University</title>
+  <meta
+    name="description"
+    content="AWS Innovation Challenge — 30-hour offline campus hackathon at Presidency University."
+  />
+
+  <style>
+    :root {
+      --bg: #050b14;
+      --bg-soft: #0b1422;
+      --card: #0f1b2b;
+      --card-hover: #132238;
+      --text: #f5f7fa;
+      --muted: #aab6c5;
+      --blue: #4da3ff;
+      --blue-dark: #1677d2;
+      --orange: #ff9900;
+      --green: #35d07f;
+      --border: rgba(255,255,255,0.09);
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+      --radius: 20px;
+      --max-width: 1180px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(77,163,255,0.12), transparent 30%),
+        radial-gradient(circle at 80% 10%, rgba(255,153,0,0.10), transparent 28%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(92%, var(--max-width));
+      margin: auto;
+    }
+
+    /* NAVBAR */
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(5,11,20,0.78);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--orange), #ffb84d);
+      color: #111;
+      font-weight: 900;
+    }
+
+    .brand span {
+      color: var(--orange);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 26px;
+      align-items: center;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 14px;
+      transition: 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .nav-button {
+      background: var(--orange);
+      color: #111 !important;
+      padding: 10px 17px;
+      border-radius: 10px;
+      font-weight: 800;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 100vh;
+      padding: 150px 0 90px;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 13px;
+      border: 1px solid rgba(255,153,0,0.3);
+      background: rgba(255,153,0,0.08);
+      border-radius: 999px;
+      color: #ffc266;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      font-size: clamp(46px, 7vw, 86px);
+      line-height: 0.98;
+      letter-spacing: -4px;
+      margin-bottom: 25px;
+    }
+
+    h1 .accent {
+      color: var(--orange);
+    }
+
+    .hero-description {
+      max-width: 650px;
+      color: var(--muted);
+      font-size: 18px;
+      margin-bottom: 32px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 14px 22px;
+      border-radius: 12px;
+      font-weight: 800;
+      border: 1px solid var(--border);
+      transition: 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--orange);
+      color: #111;
+      border-color: var(--orange);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      background: #ffad2e;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.04);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.08);
+    }
+
+    /* HERO CARD */
+
+    .hero-card {
+      background: linear-gradient(
+        145deg,
+        rgba(77,163,255,0.12),
+        rgba(255,153,0,0.06)
+      );
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card-title {
+      color: var(--muted);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 22px;
+    }
+
+    .event-date {
+      font-size: 38px;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 25px;
+    }
+
+    .event-date span {
+      color: var(--orange);
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .info-box {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      padding: 15px;
+      border-radius: 14px;
+    }
+
+    .info-box small {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .info-box strong {
+      font-size: 15px;
+    }
+
+    /* SECTIONS */
+
+    section {
+      padding: 95px 0;
+    }
+
+    .section-heading {
+      max-width: 700px;
+      margin-bottom: 45px;
+    }
+
+    .eyebrow {
+      color: var(--orange);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: clamp(32px, 5vw, 50px);
+      line-height: 1.05;
+      letter-spacing: -2px;
+      margin-bottom: 15px;
+    }
+
+    .section-description {
+      color: var(--muted);
+    }
+
+    /* HIGHLIGHTS */
+
+    .highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .highlight {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 25px;
+    }
+
+    .highlight-icon {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+
+    .highlight h3 {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .highlight p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* PROCESS */
+
+    .process {
+      background: var(--bg-soft);
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .step {
+      position: relative;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 25px;
+    }
+
+    .step-number {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(255,153,0,0.12);
+      color: var(--orange);
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    .step h3 {
+      margin-bottom: 8px;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* THEMES */
+
+    .themes-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+
+    .theme {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 25px 20px;
+      transition: 0.25s;
+    }
+
+    .theme:hover {
+      transform: translateY(-5px);
+      background: var(--card-hover);
+      border-color: rgba(77,163,255,0.4);
+    }
+
+    .theme-icon {
+      font-size: 32px;
+      margin-bottom: 18px;
+    }
+
+    .theme h3 {
+      margin-bottom: 9px;
+      font-size: 17px;
+    }
+
+    .theme p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* RULES */
+
+    .rules-box {
+      background:
+        linear-gradient(135deg, rgba(77,163,255,0.10), rgba(255,153,0,0.08));
+      border: 1px solid rgba(77,163,255,0.18);
+      border-radius: 28px;
+      padding: 45px;
+    }
+
+    .rules-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px 35px;
+    }
+
+    .rules-list li {
+      display: flex;
+      gap: 12px;
+      color: var(--muted);
+    }
+
+    .rules-list li::before {
+      content: "✓";
+      color: var(--green);
+      font-weight: 900;
+    }
+
+    /* PRIZES */
+
+    .prize-section {
+      text-align: center;
+    }
+
+    .prize-pool {
+      font-size: clamp(48px, 8vw, 90px);
+      font-weight: 950;
+      color: var(--orange);
+      letter-spacing: -4px;
+      margin: 15px 0 40px;
+    }
+
+    .prizes {
+      max-width: 850px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .prize {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 30px;
+    }
+
+    .prize:first-child {
+      border-color: rgba(255,153,0,0.45);
+      transform: translateY(-8px);
+    }
+
+    .prize-medal {
+      font-size: 35px;
+      margin-bottom: 10px;
+    }
+
+    .prize h3 {
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .prize-amount {
+      font-size: 34px;
+      font-weight: 900;
+      color: white;
+    }
+
+    /* ELIGIBILITY */
+
+    .eligibility {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 35px;
+      align-items: stretch;
+    }
+
+    .eligibility-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 35px;
+    }
+
+    .eligibility-card ul {
+      list-style: none;
+      margin-top: 20px;
+    }
+
+    .eligibility-card li {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .eligibility-card li:last-child {
+      border-bottom: none;
+    }
+
+    /* CTA */
+
+    .cta {
+      text-align: center;
+      padding: 100px 25px;
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at center, rgba(255,153,0,0.14), transparent 55%),
+        var(--card);
+      border: 1px solid var(--border);
+    }
+
+    .cta p {
+      max-width: 650px;
+      margin: 0 auto 30px;
+      color: var(--muted);
+    }
+
+    /* FAQ */
+
+    .faq {
+      max-width: 850px;
+      margin: auto;
+    }
+
+    details {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    summary {
+      cursor: pointer;
+      padding: 19px 22px;
+      font-weight: 750;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details p {
+      padding: 0 22px 20px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* CONTACT */
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .contact-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 25px;
+      border-radius: var(--radius);
+    }
+
+    .contact-card h3 {
+      margin-bottom: 7px;
+    }
+
+    .contact-card p {
+      color: var(--muted);
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 45px 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 1000px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .highlight-grid,
+      .process-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .themes-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .themes-grid .theme:last-child {
+        grid-column: span 2;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 120px;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      .highlight-grid,
+      .process-grid,
+      .themes-grid,
+      .prizes,
+      .eligibility,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .themes-grid .theme:last-child {
+        grid-column: auto;
+      }
+
+      .rules-list {
+        grid-template-columns: 1fr;
+      }
+
+      .rules-box {
+        padding: 28px 22px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ================= NAVIGATION ================= -->
+
+  <nav>
+    <div class="container nav-inner">
+
+      <a href="#" class="brand">
+        <div class="brand-mark">AWS</div>
+        <div>Innovation <span>Challenge</span></div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#themes">Themes</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#prizes">Prizes</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li>
+          <a
+            class="nav-button"
+            href="https://forms.gle/zJuSjKNvwLfMHPFA6"
+            target="_blank"
+          >
+            Register Now
+          </a>
+        </li>
+      </ul>
+
+    </div>
+  </nav>
+
+
+  <!-- ================= HERO ================= -->
+
+  <header class="hero">
+
+    <div class="container hero-grid">
+
+      <div>
+
+        <div class="badge">
+          🏆 ₹30,000 Prize Pool
+        </div>
+
+        <h1>
+          Build.<br>
+          <span class="accent">Innovate.</span><br>
+          Impact.
+        </h1>
+
+        <p class="hero-description">
+          A 30-hour offline campus hackathon for B.Tech students to
+          collaborate, experiment, and build technology-driven solutions
+          to real-world problems.
+        </p>
+
+        <div class="buttons">
+
+          <a
+            href="https://forms.gle/zJuSjKNvwLfMHPFA6"
+            target="_blank"
+            class="btn btn-primary"
+          >
+            🚀 Register Your Team
+          </a>
+
+          <a
+            href="YOUR_RULEBOOK_LINK"
+            target="_blank"
+            class="btn btn-secondary"
+          >
+            📖 Read Rule Book
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="hero-card">
+
+        <div class="hero-card-title">
+          Event Details
+        </div>
+
+        <div class="event-date">
+          <span>29–30</span><br>
+          September 2026
+        </div>
+
+        <div class="info-grid">
+
+          <div class="info-box">
+            <small>Duration</small>
+            <strong>30 Hours</strong>
+          </div>
+
+          <div class="info-box">
+            <small>Format</small>
+            <strong>Offline</strong>
+          </div>
+
+          <div class="info-box">
+            <small>Venue</small>
+            <strong>Presidency University</strong>
+          </div>
+
+          <div class="info-box">
+            <small>Team Size</small>
+            <strong>2–4 Members</strong>
+          </div>
+
+          <div class="info-box">
+            <small>Registration</small>
+            <strong>₹300 / Team</strong>
+          </div>
+
+          <div class="info-box">
+            <small>Offline Capacity</small>
+            <strong>25 Teams</strong>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- ================= ABOUT ================= -->
+
+  <section id="about">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <div class="eyebrow">About the Challenge</div>
+
+        <h2>30 Hours to Build Something Meaningful.</h2>
+
+        <p class="section-description">
+          The AWS Innovation Challenge is a beginner-friendly campus
+          hackathon where students come together to identify real-world
+          problems, develop innovative solutions, and showcase their
+          technical skills.
+        </p>
+
+      </div>
+
+
+      <div class="highlight-grid">
+
+        <div class="highlight">
+          <div class="highlight-icon">⏱️</div>
+          <h3>30-Hour Hackathon</h3>
+          <p>
+            Build, experiment, iterate and demonstrate your solution
+            during the offline hackathon.
+          </p>
+        </div>
+
+        <div class="highlight">
+          <div class="highlight-icon">👥</div>
+          <h3>Teams of 2–4</h3>
+          <p>
+            Collaborate with teammates and build something impactful
+            together.
+          </p>
+        </div>
+
+        <div class="highlight">
+          <div class="highlight-icon">💡</div>
+          <h3>Your Own Problem</h3>
+          <p>
+            Choose a theme and bring or develop your own problem statement.
+          </p>
+        </div>
+
+        <div class="highlight">
+          <div class="highlight-icon">☁️</div>
+          <h3>Build with Technology</h3>
+          <p>
+            Explore cloud, AI and other technologies to turn your idea
+            into a working prototype.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= SELECTION PROCESS ================= -->
+
+  <section id="process" class="process">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <div class="eyebrow">How It Works</div>
+
+        <h2>From Idea to Impact.</h2>
+
+        <p class="section-description">
+          Only 25 teams will participate in the offline hackathon.
+          If registrations exceed the available capacity, an online
+          evaluation will be conducted to shortlist the final teams.
+        </p>
+
+      </div>
+
+
+      <div class="process-grid">
+
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Register</h3>
+          <p>
+            Form a team of 2–4 members and complete registration.
+            Registration fee is ₹300 per team.
+          </p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Online Evaluation</h3>
+          <p>
+            If more than 25 teams register, an online evaluation will
+            be conducted for shortlisting.
+          </p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Final 25 Teams</h3>
+          <p>
+            The final 25 teams will be shortlisted for the offline
+            hackathon.
+          </p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>30-Hour Build</h3>
+          <p>
+            Shortlisted teams attend the campus hackathon and build
+            their solution.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= THEMES ================= -->
+
+  <section id="themes">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <div class="eyebrow">Choose Your Theme</div>
+
+        <h2>Five Paths. One Big Challenge.</h2>
+
+        <p class="section-description">
+          Every team must select exactly one theme and develop its own
+          problem statement based on that theme.
+        </p>
+
+      </div>
+
+
+      <div class="themes-grid">
+
+        <div class="theme">
+          <div class="theme-icon">🌐</div>
+          <h3>Open Innovation</h3>
+          <p>
+            Build solutions for any real-world problem you are
+            passionate about.
+          </p>
+        </div>
+
+        <div class="theme">
+          <div class="theme-icon">🏥</div>
+          <h3>Healthcare</h3>
+          <p>
+            Technology-driven solutions for healthcare, accessibility,
+            diagnostics and patient support.
+          </p>
+        </div>
+
+        <div class="theme">
+          <div class="theme-icon">🤖</div>
+          <h3>Generative AI</h3>
+          <p>
+            Create chatbots, AI copilots, RAG-based assistants,
+            content tools and more.
+          </p>
+        </div>
+
+        <div class="theme">
+          <div class="theme-icon">🔐</div>
+          <h3>Cybersecurity</h3>
+          <p>
+            Secure authentication, threat detection, privacy,
+            phishing detection and network security.
+          </p>
+        </div>
+
+        <div class="theme">
+          <div class="theme-icon">🎓</div>
+          <h3>Smart Education</h3>
+          <p>
+            Reimagine learning, skill assessment, accessibility,
+            campus automation and EdTech.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= IMPORTANT RULES ================= -->
+
+  <section>
+
+    <div class="container">
+
+      <div class="rules-box">
+
+        <div class="section-heading">
+
+          <div class="eyebrow">Important</div>
+
+          <h2>Know Before You Register.</h2>
+
+        </div>
+
+
+        <ul class="rules-list">
+
+          <li>
+            <span>
+              The offline hackathon is limited to <strong>25 teams</strong>.
+            </span>
+          </li>
+
+          <li>
+            <span>
+              If registrations exceed 25 teams, an online evaluation
+              will be conducted.
+            </span>
+          </li>
+
+          <li>
+            <span>
+              Only the final <strong>25 shortlisted teams</strong>
+              will attend the offline hackathon.
+            </span>
+          </li>
+
+          <li>
+            <span>
+              The offline hackathon will run for
+              <strong>30 hours</strong>.
+            </span>
+          </li>
+
+          <li>
+            <span>
+              Each team must select <strong>one</strong> of the five themes.
+            </span>
+          </li>
+
+          <li>
+            <span>
+              Each team must bring or develop its
+              <strong>own problem statement</strong>.
+            </span>
+          </li>
+
+          <li>
+            <span>
+              Registration fee is <strong>₹300 per team</strong>.
+            </span>
+          </li>
+
+          <li>
+            <span>
+              Team size must be between <strong>2 and 4 members</strong>.
+            </span>
+          </li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= ELIGIBILITY ================= -->
+
+  <section>
+
+    <div class="container">
+
+      <div class="eligibility">
+
+        <div class="eligibility-card">
+
+          <div class="eyebrow">Who Can Participate?</div>
+
+          <h2>Bring Your Team.</h2>
+
+          <ul>
+            <li>✓ B.Tech students</li>
+            <li>✓ Students from any branch</li>
+            <li>✓ 1st–4th year students</li>
+            <li>✓ Teams of 2–4 members</li>
+            <li>✓ Cross-year teams encouraged</li>
+            <li>✓ Cross-branch teams encouraged</li>
+          </ul>
+
+        </div>
+
+
+        <div class="eligibility-card">
+
+          <div class="eyebrow">Why Participate?</div>
+
+          <h2>Learn. Build. Showcase.</h2>
+
+          <ul>
+            <li>✓ Gain hands-on technology experience</li>
+            <li>✓ Work on a real-world problem</li>
+            <li>✓ Build a functional prototype</li>
+            <li>✓ Receive mentorship and feedback</li>
+            <li>✓ Pitch your solution</li>
+            <li>✓ Compete for ₹30,000 in prizes</li>
+          </ul>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= PRIZES ================= -->
+
+  <section id="prizes" class="prize-section">
+
+    <div class="container">
+
+      <div class="eyebrow">Compete & Win</div>
+
+      <h2>₹30,000 Prize Pool</h2>
+
+      <div class="prize-pool">₹30,000</div>
+
+      <div class="prizes">
+
+        <div class="prize">
+
+          <div class="prize-medal">🥇</div>
+
+          <h3>First Prize</h3>
+
+          <div class="prize-amount">₹15,000</div>
+
+        </div>
+
+        <div class="prize">
+
+          <div class="prize-medal">🥈</div>
+
+          <h3>Second Prize</h3>
+
+          <div class="prize-amount">₹10,000</div>
+
+        </div>
+
+        <div class="prize">
+
+          <div class="prize-medal">🥉</div>
+
+          <h3>Third Prize</h3>
+
+          <div class="prize-amount">₹5,000</div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= FAQ ================= -->
+
+  <section id="faq">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <div class="eyebrow">FAQ</div>
+
+        <h2>Frequently Asked Questions</h2>
+
+      </div>
+
+
+      <div class="faq">
+
+        <details>
+          <summary>Who can participate?</summary>
+          <p>
+            B.Tech students from any branch can participate. Cross-year
+            and cross-branch teams are encouraged.
+          </p>
+        </details>
+
+        <details>
+          <summary>What is the team size?</summary>
+          <p>
+            Each team must have 2–4 members.
+          </p>
+        </details>
+
+        <details>
+          <summary>How much is the registration fee?</summary>
+          <p>
+            The registration fee is ₹300 per team.
+          </p>
+        </details>
+
+        <details>
+          <summary>How many teams can participate offline?</summary>
+          <p>
+            The offline hackathon is limited to 25 teams.
+          </p>
+        </details>
+
+        <details>
+          <summary>What happens if more than 25 teams register?</summary>
+          <p>
+            An online evaluation round will be conducted to shortlist
+            the final 25 teams.
+          </p>
+        </details>
+
+        <details>
+          <summary>How long is the hackathon?</summary>
+          <p>
+            The offline hackathon is 30 hours long.
+          </p>
+        </details>
+
+        <details>
+          <summary>Can we choose more than one theme?</summary>
+          <p>
+            No. Each team must select exactly one of the five themes.
+          </p>
+        </details>
+
+        <details>
+          <summary>Who provides the problem statement?</summary>
+          <p>
+            Each team must bring or develop its own problem statement
+            based on the theme selected by the team.
+          </p>
+        </details>
+
+        <details>
+          <summary>Do we need previous AWS experience?</summary>
+          <p>
+            No. The hackathon is designed to be beginner-friendly.
+          </p>
+        </details>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= CTA ================= -->
+
+  <section>
+
+    <div class="container">
+
+      <div class="cta">
+
+        <div class="eyebrow">Ready?</div>
+
+        <h2>Bring Your Idea. Build Your Solution.</h2>
+
+        <p>
+          Form your team, choose your theme, define your problem statement,
+          and get ready for 30 hours of building, innovation and impact.
+        </p>
+
+        <div class="buttons" style="justify-content:center;">
+
+          <a
+            href="https://forms.gle/zJuSjKNvwLfMHPFA6"
+            target="_blank"
+            class="btn btn-primary"
+          >
+            🚀 Register Now
+          </a>
+
+          <a
+            href="YOUR_RULEBOOK_LINK"
+            target="_blank"
+            class="btn btn-secondary"
+          >
+            📖 Rule Book
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= CONTACT ================= -->
+
+  <section>
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <div class="eyebrow">Contact</div>
+
+        <h2>Need More Information?</h2>
+
+      </div>
+
+      <div class="contact-grid">
+
+        <div class="contact-card">
+          <h3>🎓 Student Coordinators</h3>
+          <p>
+            Deepak Verma<br>
+            +91 86609 01315
+          </p>
+        </div>
+
+        <div class="contact-card">
+          <h3>👨‍🏫 Faculty Coordinators</h3>
+          <p>
+            Dr.Jayanthi Kamalasekaran <br>
+            +91 84460 75868
+          </p>
+        </div>
+
+        <div class="contact-card">
+          <h3>🌐 Official Website</h3>
+          <p>
+            <a
+              href="https://www.awsclub.in/"
+              target="_blank"
+              style="color: var(--blue);"
+            >
+              Visit Website →
+            </a>
+          </p>
+        </div>
+
+        <div class="contact-card">
+          <h3>📖 Rule Book</h3>
+          <p>
+            <a
+              href="YOUR_RULEBOOK_LINK"
+              target="_blank"
+              style="color: var(--blue);"
+            >
+              Read Complete Rule Book →
+            </a>
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= FOOTER ================= -->
+
+  <footer>
+
+    <div class="container footer-inner">
+
+      <div>
+        <strong>AWS Innovation Challenge</strong><br>
+        Presidency University
+      </div>
+
+      <div class="footer-links">
+        <a href="https://www.awsclub.in/" target="_blank">Website</a>
+        <a href="YOUR_RULEBOOK_LINK" target="_blank">Rule Book</a>
+        <a href="https://forms.gle/zJuSjKNvwLfMHPFA6" target="_blank">Register</a>
+      </div>
+
+    </div>
+
+  </footer>
+
+</body>
+</html>
